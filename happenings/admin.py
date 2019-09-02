@@ -43,6 +43,7 @@ class EventAdmin(admin.ModelAdmin):
     date_hierarchy = 'start_date'
     inlines = [CancellationInline]
 
+
 admin.site.register(Event, EventAdmin)
 admin.site.register(Location)
 admin.site.register(Category)

@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from json import loads
 
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.test.utils import override_settings
@@ -14,6 +14,7 @@ from happenings.models import Event
 @override_settings(CALENDAR_SHOW_LIST=True)
 class AjaxTest(TestCase):
     """Test that urls expecting ajax return appropriate data."""
+
     def test_ajax_month_calendar(self):
         response = self.client.get(
             reverse('calendar:month_shift'),

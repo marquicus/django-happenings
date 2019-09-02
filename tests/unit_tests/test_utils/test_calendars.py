@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 
-from datetime import date
 from collections import defaultdict
 
 from tests.integration_tests.event_factory import create_event, SetMeUp

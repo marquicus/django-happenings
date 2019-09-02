@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from calendar import monthrange
 import datetime
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.six.moves import xrange
 
 from .event_factory import create_event, SetMeUp
@@ -11,6 +11,7 @@ from .event_factory import create_event, SetMeUp
 
 class MonthlyRepeatingChunkEventListViewTest(SetMeUp):
     """Test monthly repeating 'chunk' events"""
+
     def check_dates(self, event, valid_dates):
         """A DRY helper function."""
         for year, dates in valid_dates.items():

@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from .event_factory import create_event, SetMeUp
 
@@ -14,6 +14,7 @@ class MultipleEventsListViewTest(SetMeUp):
     it was clearing the counter used to keep track of all events,
     but no tests caught the problem.
     """
+
     def test_multi(self):
         event1 = create_event(
             start_date=(2014, 5, 28),

@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.db import models
-from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
@@ -60,7 +59,7 @@ class Event(models.Model):
     )
     objects = EventManager()
     created_by = models.ForeignKey(
-        auth_user_model, verbose_name=_("created by"), related_name='events'
+        auth_user_model, verbose_name=_("created by"), related_name='events', on_delete=models.CASCADE
     )
     categories = models.ManyToManyField(
         'Category', verbose_name=_('categories'), blank=True
@@ -335,7 +334,7 @@ class Tag(models.Model):
 @python_2_unicode_compatible
 class Cancellation(models.Model):
     event = models.ForeignKey(
-        Event, related_name="cancellations", related_query_name="cancellation"
+        Event, related_name="cancellations", related_query_name="cancellation", on_delete=models.CASCADE
     )
     reason = models.CharField(_("reason"), max_length=255)
     date = models.DateField(_("date"))

@@ -203,6 +203,7 @@ class MonthlyRepeater(Repeater):
 
 class DailyRepeater(Repeater):
     """Handles repeating daily and every weekday."""
+
     def repeat_it(self):
         if self.event.end_repeat is not None:
             self.end_repeat = self.event.end_repeat

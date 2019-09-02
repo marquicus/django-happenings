@@ -14,6 +14,7 @@ from tests.integration_tests.event_factory import create_event, SetMeUp
 @override_settings(TIME_ZONE='UTC')
 class TestHandlers(SetMeUp):
     """Tests the handlers for repeating events."""
+
     def setUp(self):
         self.counter = defaultdict(list)
         self.year = 2014

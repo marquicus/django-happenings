@@ -15,10 +15,10 @@ import six
 
 # happenings:
 from .models import Event
-from happenings.utils.displays import month_display, day_display
-from happenings.utils.next_event import get_next_event
-from happenings.utils.mixins import JSONResponseMixin
-from happenings.utils import common as c
+from .utils.displays import month_display, day_display
+from .utils.next_event import get_next_event
+from .utils.mixins import JSONResponseMixin
+from .utils import common as c
 
 
 CALENDAR_LOCALE = getattr(settings, 'CALENDAR_LOCALE', 'en_US.utf8')

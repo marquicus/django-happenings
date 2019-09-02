@@ -2,16 +2,17 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from django.utils import timezone
-
-now = timezone.localtime(timezone.now())
-
 from happenings.utils.common import clean_year_month_day, clean_year_month
+
+now = timezone.now()
+
 
 ERROR = "The date given was invalid."
 
 
 class CleanYearMonthTest(TestCase):
     """Tests the clean_year_month() utility function"""
+
     def test_valid(self):
         year, month, error = clean_year_month(2014, 3, 3)
         self.assertEqual(year, 2014)
@@ -70,6 +71,7 @@ class CleanYearMonthTest(TestCase):
 
 class CleanYearMonthDayTest(TestCase):
     """Tests the clean_year_month_day() utility function"""
+
     def test_valid_next(self):
         year, month, day, error = clean_year_month_day(2014, 3, 31, 1)
         self.assertEqual(year, 2014)

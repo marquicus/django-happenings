@@ -35,8 +35,8 @@ Dependencies
 
 Required:
 
-* Django 1.6+
-* Python 2.6+, 3+
+* Django 1.11+
+* Python 3.5+
 * pytz
 
 Optional:
@@ -48,17 +48,6 @@ Optional:
 jQuery is used for AJAX and the 'Today' button on the calendar.
 
 TWBS is used to create popovers when an event is clicked on the calendar.
-
-.. warning::
-
-   django-happenings now use Django migrations by default. South users have to adjust their settings:
-
-   .. code-block:: python
-
-	SOUTH_MIGRATION_MODULES = {
-	    'taggit': 'taggit.south_migrations',
-	    'happenings': 'happenings.south_migrations',
-	}
 
 Quick Install
 -------------
@@ -80,14 +69,13 @@ Quick Install
    
    .. code-block:: python
 
-      url(r'^calendar/', include('happenings.urls', namespace='calendar'))
+      path('calendar/', include('happenings.urls'))
    
-   If your are going to use different namespace then please set ``CALENDAR_URLS_NAMESPACE`` in settings
+   If your are going to use different namespace then please set ``CALENDAR_URLS_NAMESPACE`` in settings  # TODO
 
 4. Make sure your ``TIME_ZONE`` is set correctly in settings.py.
 
-5. Run ``python manage.py migrate`` to create the models (replace ``migrate`` with
-   ``syncdb happenings`` if using older Django without South). If you're running MySQL, be sure that
+5. Run ``python manage.py makemigrations && python manage.py migrate`` to create the models. If you're running MySQL or Postgres be sure that
    your database is properly configured to use time zones.
 
 6. Run the development server and go to ``127.0.0.1:8000/admin/`` to create and manage events.

@@ -8,7 +8,7 @@ import sys
 
 # django:
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template.loader import render_to_string
 from django.utils.dates import WEEKDAYS, WEEKDAYS_ABBR
 from django.utils.html import mark_safe
@@ -39,14 +39,15 @@ if not CALENDAR_HOUR_FORMAT:
     CALENDAR_HOUR_FORMAT = CALENDAR_TIME_FORMAT
     if not CALENDAR_HOUR_FORMAT.endswith('_FORMAT'):
         for char in ('i', 's', 'u'):
-            CALENDAR_HOUR_FORMAT = CALENDAR_HOUR_FORMAT.replace(':'+char, '')
-            CALENDAR_HOUR_FORMAT = CALENDAR_HOUR_FORMAT.replace('.'+char, '')
+            CALENDAR_HOUR_FORMAT = CALENDAR_HOUR_FORMAT.replace(':' + char, '')
+            CALENDAR_HOUR_FORMAT = CALENDAR_HOUR_FORMAT.replace('.' + char, '')
             CALENDAR_HOUR_FORMAT = CALENDAR_HOUR_FORMAT.replace(char, '')
         CALENDAR_HOUR_FORMAT = CALENDAR_HOUR_FORMAT.strip(':')
 
 
 class GenericCalendar(HTMLCalendar):
-    def __init__(self, year, month, count, all_month_events, firstweekday=0, request=None, base_context=None, *args, **kwargs):
+    def __init__(self, year, month, count, all_month_events, firstweekday=0,
+                 request=None, base_context=None, *args, **kwargs):
         super(GenericCalendar, self).__init__(firstweekday)
         self.yr = year
         self.mo = month
@@ -93,7 +94,8 @@ class GenericCalendar(HTMLCalendar):
             url_name = 'day_list'
         return reverse(url_name, args=(self.yr, self.mo, day))
 
-    def formatmonth(self, theyear, themonth, withyear=True, net=None, qs=None, template='happenings/partials/calendar/month_table.html'):
+    def formatmonth(self, theyear, themonth, withyear=True, net=None,
+                    qs=None, template='happenings/partials/calendar/month_table.html'):
         """Return a formatted month as a table."""
         context = self.get_context()
         context['month_start_date'] = date(self.yr, self.mo, 1)
@@ -124,8 +126,7 @@ class EventCalendar(GenericCalendar):
             self, day, weekday,
             day_template='happenings/partials/calendar/day_cell.html',
             noday_template='happenings/partials/calendar/day_noday_cell.html',
-            popover_template='happenings/partials/calendar/popover.html',
-            ):
+            popover_template='happenings/partials/calendar/popover.html'):
         """Return a day as a table cell."""
         super(EventCalendar, self).formatday(day, weekday)
         now = get_now()
@@ -263,7 +264,6 @@ class LegacyGenericCalendar(LocaleHTMLCalendar):
         return ('<tr><th colspan="5" class="month">'
                 '<button id="cal-today-btn" class="btn btn-small">'
                 'Today</button> %s</th></tr>' % s)
-
 
 
 class LegacyEventCalendar(LegacyGenericCalendar):

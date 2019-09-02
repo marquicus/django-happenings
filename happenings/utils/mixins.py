@@ -14,6 +14,7 @@ class JSONResponseMixin(object):
     A mixin that can be used to render a JSON response. See:
     https://docs.djangoproject.com/en/dev/topics/class-based-views/mixins/
     """
+
     def render_to_json_response(self, context, **kwargs):
         """
         Returns a JSON response, transforming 'context' to make the payload.
@@ -36,8 +37,8 @@ class JSONResponseMixin(object):
             return dumps(self.get_month_event_list_dict(context))
         elif 'cal-and-list/shift' in self.request.path:
             cal = self.get_month_calendar_dict(context)
-            l = self.get_month_event_list_dict(context)
-            cal.update(l)
+            el = self.get_month_event_list_dict(context)
+            cal.update(el)
             return dumps(cal)
         else:  # day list view
             for key, val in context.items():

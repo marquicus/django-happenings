@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 import locale
 
 from django.conf import settings
-
-from happenings.models import Event
+from django.utils.html import mark_safe
+from ..models import Event
 from .handlers import CountHandler
 from .calendars import EventCalendar, MiniEventCalendar
 from .common import get_next_and_prev
@@ -80,7 +80,7 @@ def month_display(year, month, all_month_events,
 
     add_occurrences(all_month_events, count)
 
-    return html_cal
+    return mark_safe(html_cal)
 
 
 def day_display(year, month, all_month_events, day):

@@ -1,14 +1,15 @@
 language: python
 
 python:
-    - "2.6"
-    - "2.7"
     - "3.4"
+    - "3.5"
+    - "3.6"
 
 env:
-  - TOX_ENV=django16
-  - TOX_ENV=django17
-  - TOX_ENV=django18
+  - TOX_ENV=django11
+  - TOX_ENV=django20
+  - TOX_ENV=django21
+  - TOX_ENV=django22
   - TOX_ENV=coverage
 
 install:
@@ -19,11 +20,7 @@ script:
 
 matrix:
   exclude:
-   - python: "2.6"
-     env: TOX_ENV=django17
-   - python: "2.6"
-     env: TOX_ENV=django18
-   - python: "2.6"
+   - python: "3.4"
      env: TOX_ENV=coverage
-   - python: "2.7"
+   - python: "3.5"
      env: TOX_ENV=coverage

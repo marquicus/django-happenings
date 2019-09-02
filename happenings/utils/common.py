@@ -6,7 +6,6 @@ from calendar import monthrange
 from django.utils import timezone
 from django.utils.six.moves import xrange
 
-
 get_now = lambda: timezone.localtime(timezone.now())
 
 now = get_now()

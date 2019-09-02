@@ -4,7 +4,7 @@ import re
 from datetime import date, timedelta
 
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from .event_factory import create_event, SetMeUp
 
